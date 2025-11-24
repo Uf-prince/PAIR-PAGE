@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PAIR CODE - COSMIC SINGULARITY EDITION</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  
+  <style>
+    /* CSS Variables for Ultimate Customization */
+    :root {
+        --color-accent1: #00eaff; /* Bright Cyan */
+        --color-accent2: #ff00c8; /* Vibrant Magenta */
+        --color-text: #e0f7fa;
+        --bg-color: #05001a; /* Deep Space Blue/Black */
+        --card-bg-dark: rgba(10, 0, 30, 0.8);
+    }
+    
+    /* ---------------------------------
+       GLOBAL STYLES & COSMIC BACKGROUND
+       --------------------------------- */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Share Tech Mono', monospace; /* Techy Monospace */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--bg-color);
+      overflow: hidden;
+      color: var(--color-text);
+      perspective: 2000px; /* Maxed out perspective */
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="var(--color-accent1)" d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-8h2v8zm4 0h-2v-8h2v8zm4 0h-2v-8h2v8z"/><circle fill="var(--color-accent2)" cx="12" cy="12" r="2"/></svg>') 12 12, auto; /* Custom glowing cursor */
+    }
+
+    /* Particles.js Container (Infinite Cosmic Nebula) */
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-color);
+      z-index: -5;
+    }
+
+    /* Additional subtle RGB haze */
+    .rgb-haze {
+      position: absolute;
+      width: 500%;
+      height: 500%;
+      background: radial-gradient(circle at center, rgba(0, 234, 255, 0.1), rgba(255, 0, 200, 0.1), transparent 70%);
+      filter: blur(400px);
+      animation: haze-pulse 60s infinite alternate linear;
+      z-index: -4;
+    }
+
+    @keyframes haze-pulse {
+        0% { transform: scale(1) translate(0, 0); }
+        100% { transform: scale(1.2) translate(50px, -50px); }
+    }
+
+    /* ---------------------------------
+       CARD: GRAVITATIONAL PLASMA ORB
+       --------------------------------- */
+    .card {
+      width: 550px; 
+      padding: 70px;
+      border-radius: 50%; /* Start as a circle for plasma effect */
+      background: var(--card-bg-dark); 
+      backdrop-filter: blur(60px) saturate(250%) brightness(1.5); /* Intense glass effect */
+      border: 2px solid rgba(var(--color-accent1), 0.3);
+      box-shadow: 
+        0 0 80px rgba(var(--color-accent1), 0.5), 
+        0 0 120px rgba(var(--color-accent2), 0.4); 
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: all 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Springy, more dramatic transition */
+      animation: plasma-deform 15s infinite ease-in-out alternate; /* Deforming plasma effect */
+      transform: translateZ(50px); /* Lift off the background */
+    }
+
+    @keyframes plasma-deform {
+        0% { border-radius: 50%; transform: rotateX(0deg) rotateY(0deg) scale(1); }
+        25% { border-radius: 45% 55% 50% 50% / 50% 50% 45% 55%; transform: rotateX(5deg) rotateY(-5deg) scale(1.02); }
+        50% { border-radius: 55% 45% 50% 50% / 50% 50% 55% 45%; transform: rotateX(-5deg) rotateY(5deg) scale(0.98); }
+        75% { border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%; transform: rotateX(5deg) rotateY(-5deg) scale(1.02); }
+        100% { border-radius: 50%; transform: rotateX(0deg) rotateY(0deg) scale(1); }
+    }
+
+    /* Gravitational Ring (Inner Border) */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -10px; /* Thicker, more pronounced */
+      border-radius: inherit; /* Inherit plasma deformation */
+      background: conic-gradient(
+        from 0deg,
+        var(--color-accent1),
+        var(--color-accent2),
+        var(--color-accent1)
+      );
+      background-size: 200% 200%;
+      animation: gravitationalRing 10s linear infinite;
+      z-index: -1;
+      filter: blur(15px);
+      opacity: 0.9;
+    }
+
+    @keyframes gravitationalRing {
+      0% { transform: rotate(0deg) scale(1); opacity: 0.9; }
+      50% { transform: rotate(180deg) scale(1.02); opacity: 1; }
+      100% { transform: rotate(360deg) scale(1); opacity: 0.9; }
+    }
+
+    /* ---------------------------------
+       TYPOGRAPHY: PARTICLE NEBULA
+       --------------------------------- */
+    h1 {
+      font-family: 'Syncopate', sans-serif; /* Powerful, modern font */
+      text-align: center;
+      font-size: 70px; /* Massive */
+      margin-bottom: 10px;
+      letter-spacing: 10px;
+      font-weight: 700;
+      color: transparent; /* Text itself is transparent */
+      position: relative;
+      z-index: 10;
+      
+      /* Glowing Text Effect with Gradient */
+      background: linear-gradient(
+        90deg,
+        var(--color-accent1),
+        var(--color-accent2),
+        var(--color-accent1)
+      );
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: h1-gradient-shift 10s infinite linear;
+      text-shadow: 0 0 20px rgba(0, 234, 255, 0.8), 0 0 40px rgba(255, 0, 200, 0.6);
+    }
+    
+    @keyframes h1-gradient-shift {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+    }
+
+    /* Optional: Small particles around H1 */
+    .h1-particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    .h1-particle {
+        position: absolute;
+        background: radial-gradient(circle, var(--color-accent1) 10%, var(--color-accent2) 50%, transparent 80%);
+        border-radius: 50%;
+        animation: float-h1-particle 5s infinite ease-in-out alternate;
+        opacity: 0;
+        filter: blur(2px);
+    }
+
+    @keyframes float-h1-particle {
+        0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+        50% { transform: translate(var(--dx), var(--dy)) scale(1); opacity: 0.7; }
+        100% { transform: translate(var(--dx2), var(--dy2)) scale(0.5); opacity: 0; }
+    }
+
+
+    .subtitle {
+        font-family: 'Share Tech Mono', monospace;
+        text-align: center;
+        color: var(--color-accent1);
+        margin-bottom: 50px;
+        font-size: 20px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        filter: brightness(1.5);
+        text-shadow: 0 0 10px rgba(0, 234, 255, 0.7);
+    }
+
+    /* ---------------------------------
+       FORM ELEMENTS (Holographic Input)
+       --------------------------------- */
+    input {
+      width: 100%;
+      padding: 28px; 
+      margin-top: 35px;
+      border-radius: 12px;
+      border: 3px solid var(--color-accent2);
+      outline: none;
+      background: rgba(255, 255, 255, 0.08); /* More visible glass */
+      color: var(--color-accent1);
+      font-size: 22px;
+      box-shadow: inset 0 0 20px rgba(255, 0, 200, 0.3);
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    input::placeholder {
+        color: rgba(0, 234, 255, 0.6);
+    }
+
+    /* Focus (Pulsating Hologram) */
+    input:focus {
+      background: rgba(0, 234, 255, 0.1);
+      border-color: var(--color-accent1);
+      box-shadow: 
+        0 0 60px rgba(0, 234, 255, 1), 
+        inset 0 0 30px rgba(255, 0, 200, 0.8),
+        0 0 0 5px rgba(0, 234, 255, 0.2); /* Outer ring pulse */
+    }
+
+    /* ---------------------------------
+       BUTTON: QUANTUM PORTAL
+       --------------------------------- */
+    button {
+      width: 100%;
+      margin-top: 60px;
+      padding: 30px;
+      font-size: 26px;
+      font-weight: 700;
+      border: 4px solid var(--color-accent1); 
+      border-radius: 15px;
+      cursor: pointer;
+      background: linear-gradient(45deg, #0d005c, #4f005c); /* Deeper space gradient */
+      color: var(--color-text);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      position: relative;
+      overflow: hidden; 
+      z-index: 1;
+      box-shadow: 0 0 20px var(--color-accent2);
+      transition: all 0.5s ease-in-out;
+    }
+    
+    /* Quantum Portal Effect */
+    button::after {
+        content: '';
+        position: absolute;
+        width: 150%;
+        height: 150%;
+        top: -25%;
+        left: -25%;
+        background: radial-gradient(circle at center, 
+            rgba(0, 234, 255, 0.8) 0%, 
+            rgba(255, 0, 200, 0.6) 30%, 
+            rgba(0, 234, 255, 0.4) 60%, 
+            transparent 80%);
+        transform: scale(0);
+        opacity: 0;
+        transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+        z-index: -1;
+    }
+
+    button:hover {
+      transform: scale(1.04) translateY(-8px); 
+      box-shadow: 0 0 80px var(--color-accent1), 0 0 120px var(--color-accent2); 
+      border-color: var(--color-accent2);
+      letter-spacing: 6px;
+    }
+
+    button:hover::after {
+        transform: scale(1);
+        opacity: 1;
+        animation: portal-ripple 1.5s infinite ease-out;
+    }
+    
+    @keyframes portal-ripple {
+        0% { box-shadow: 0 0 0 0 rgba(0, 234, 255, 0.7); }
+        100% { box-shadow: 0 0 0 50px rgba(0, 234, 255, 0); }
+    }
+
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="rgb-haze"></div>
+  
+  <div class="card" id="cosmic-card">
+    <h1>PAIR CODE</h1>
+    <p class="subtitle">INITIATE COSMIC NEXUS</p>
+
+    <input type="text" id="access-key" placeholder="Enter Universal Access Key (10-Digit ID)" />
+
+    <button onclick="generatePair()">ACTIVATE SINGULARITY DRIVE</button>
+  </div>
+
+  <script>
+    // Initialize Particles.js for Cosmic Background
+    particlesJS('particles-js', {
+        "particles": {
+            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": ["#00eaff", "#ff00c8", "#e0f7fa"] },
+            "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
+            "opacity": { "value": 0.6, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+            "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 4, "size_min": 0.3, "sync": false } },
+            "line_linked": { "enable": true, "distance": 150, "color": "#2a004a", "opacity": 0.4, "width": 1 },
+            "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 600 } }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": { "enable": true, "mode": "repulse" },
+                "onclick": { "enable": true, "mode": "push" },
+                "resize": true
+            },
+            "modes": {
+                "grab": { "distance": 400, "line_linked": { "opacity": 1 } },
+                "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
+                "repulse": { "distance": 150, "duration": 0.4 },
+                "push": { "particles_nb": 4 },
+                "remove": { "particles_nb": 2 }
+            }
+        },
+        "retina_detect": true
+    });
+
+    // Main Function for Button Click
+    function generatePair() {
+      const numInput = document.getElementById("access-key");
+      const num = numInput.value;
+      
+      if (!num || num.length < 10) {
+        alert("❌ CRITICAL ANOMALY: Universal Access Key is corrupted or incomplete (requires 10 digits)!");
+        // Optional: Add a shake effect to input
+        numInput.classList.add('shake-effect');
+        setTimeout(() => numInput.classList.remove('shake-effect'), 500);
+        return;
+      }
+      
+      alert("✅ COSMIC LINK ESTABLISHED! Data stream initiated for Nexus ID: " + num + ". Prepare for synchronization...");
+      
+      // Optional: Add a temporary success animation to the card
+      const card = document.getElementById('cosmic-card');
+      card.style.transition = 'none'; // Disable existing transition temporarily
+      card.style.transform = 'scale(1.05) translateZ(100px)'; // Zoom in
+      card.style.boxShadow = '0 0 150px rgba(0, 234, 255, 1), 0 0 200px rgba(255, 0, 200, 1)';
+      setTimeout(() => {
+        card.style.transform = 'scale(1) translateZ(50px)'; // Return to normal
+        card.style.boxShadow = ''; // Reset shadow
+        card.style.transition = ''; // Re-enable original transition
+      }, 800);
+    }
+
+    // 3D TILT EFFECT (using JQuery) - Enhanced for Gravitational Pull
+    $(document).ready(function() {
+        const card = $('#cosmic-card');
+        const maxTilt = 3; // Very subtle tilt for massive object feel
+        const maxOffset = 30; // Max movement in pixels
+
+        card.on('mousemove', function(e) {
+            const pos = card.offset();
+            const centerX = pos.left + card.outerWidth() / 2;
+            const centerY = pos.top + card.outerHeight() / 2;
+
+            const x = e.pageX - centerX;
+            const y = e.pageY - centerY;
+
+            const tiltX = (y / (card.outerHeight() / 2)) * -maxTilt; 
+            const tiltY = (x / (card.outerWidth() / 2)) * maxTilt; 
+
+            // Calculate movement based on mouse position (gravitational pull effect)
+            const moveX = (x / (card.outerWidth() / 2)) * -maxOffset;
+            const moveY = (y / (card.outerHeight() / 2)) * -maxOffset;
+
+            // Apply 3D transform with subtle movement
+            card.css('transform', `rotateX(${tiltX}deg) rotateY(${tiltY}deg) translate3d(${moveX}px, ${moveY}px, 50px)`);
+        });
+
+        // Reset on mouse leave
+        card.on('mouseleave', function() {
+            card.css('transform', 'rotateX(0deg) rotateY(0deg) translate3d(0, 0, 50px)');
+        });
+    });
+
+    // Optional: Add some H1 particles for extra visual flair
+    // (This is more complex and might impact performance on older machines)
+    /*
+    $(document).ready(function() {
+        const h1 = $('h1');
+        const h1ParticlesContainer = $('<div class="h1-particles"></div>');
+        h1.append(h1ParticlesContainer);
+
+        const numH1Particles = 10;
+        for (let i = 0; i < numH1Particles; i++) {
+            const size = Math.random() * 8 + 4; // 4-12px
+            const x = Math.random() * 100 + '%';
+            const y = Math.random() * 100 + '%';
+            const dx = (Math.random() - 0.5) * 50 + 'px'; // -25px to 25px
+            const dy = (Math.random() - 0.5) * 50 + 'px';
+            const dx2 = (Math.random() - 0.5) * 50 + 'px';
+            const dy2 = (Math.random() - 0.5) * 50 + 'px';
+            const delay = Math.random() * 5 + 's';
+
+            $('<div class="h1-particle"></div>')
+                .css({
+                    'width': size + 'px',
+                    'height': size + 'px',
+                    'left': x,
+                    'top': y,
+                    'animation-delay': delay,
+                    '--dx': dx,
+                    '--dy': dy,
+                    '--dx2': dx2,
+                    '--dy2': dy2
+                })
+                .appendTo(h1ParticlesContainer);
+        }
+    });
+    */
+  </script>
+</body>
+</html>
