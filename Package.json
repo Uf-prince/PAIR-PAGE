@@ -1,0 +1,21 @@
+{
+  "name": "cosmic-singularity-paircode",
+  "version": "1.0.0",
+  "description": "Ultra Stylish Pair Code Deployment on Heroku",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "heroku",
+    "html",
+    "node",
+    "express"
+  ],
+  "author": "Your Name/Alias",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
+  
